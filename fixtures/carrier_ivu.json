@@ -1,0 +1,246 @@
+{
+  "fixture_version": "1.0",
+  "vendor": "carrier_alc",
+  "description": "Carrier i-Vu / Automated Logic WebCTRL describing the SAME building, equipment and logical points as fixtures/trane_tracer_sc.json, under ALC camelCase naming. Every `logical_id` here has an identical counterpart in the Trane fixture - matching tag output across the two files is the normalization proof.",
+  "equivalence": {
+    "counterpart_fixture": "trane_tracer_sc.json",
+    "invariant": "Identical site/floor/space/equip ids and identical logical_id set; only vendor naming, object types, and unit reporting differ."
+  },
+  "site": {
+    "id": "site-hq",
+    "name": "Riverside Commons",
+    "timezone": "America/Chicago",
+    "geo": {
+      "city": "New Orleans",
+      "state": "LA",
+      "country": "US",
+      "postal_code": "70130",
+      "latitude": 29.9375,
+      "longitude": -90.0713,
+      "climate_zone": "2A"
+    },
+    "area_sqft": 84000
+  },
+  "buildings": [
+    { "id": "bldg-a", "name": "Building A", "site_id": "site-hq", "floor_ids": ["floor-2"], "stories_above_grade": 4, "year_built": 2011 }
+  ],
+  "floors": [
+    { "id": "floor-2", "name": "Level 2", "building_id": "bldg-a", "level": 2, "area_sqft": 21000, "space_ids": ["space-214", "space-215", "space-216"] }
+  ],
+  "spaces": [
+    { "id": "space-214", "name": "214 Open Office North", "floor_id": "floor-2", "space_type": "office", "area_sqft": 1450, "design_occupancy": 14, "smoke_zone_role": "none" },
+    { "id": "space-215", "name": "215 Conference", "floor_id": "floor-2", "space_type": "conference", "area_sqft": 620, "design_occupancy": 16, "smoke_zone_role": "none" },
+    { "id": "space-216", "name": "216 Open Office South", "floor_id": "floor-2", "space_type": "office", "area_sqft": 1610, "design_occupancy": 16, "smoke_zone_role": "none" }
+  ],
+  "trunks": [
+    {
+      "trunk_id": "trunk-2a",
+      "network_number": 2001,
+      "baud": 38400,
+      "max_master": 127,
+      "actual_highest_mac": 12,
+      "node_count": 4,
+      "max_info_frames": 1,
+      "supervisor_device_id": "dev-3101",
+      "device_ids": ["dev-3101", "dev-3110", "dev-3114", "dev-3115", "dev-3116"],
+      "note": "same physical trunk misconfiguration as the Trane fixture"
+    }
+  ],
+  "devices": [
+    {
+      "device_id": "dev-3101",
+      "device_instance": 3101,
+      "name": "iVu Router 1",
+      "vendor_id": 27,
+      "vendor_name": "Automated Logic",
+      "model_name": "i-Vu Open Router",
+      "firmware_revision": "6.5.010",
+      "address": "10.42.7.20",
+      "max_apdu_length_accepted": 1476,
+      "segmentation_supported": "segmentedBoth",
+      "kind": "supervisor",
+      "is_router": true,
+      "tree_path": "#riverside",
+      "trunk_id": null
+    },
+    {
+      "device_id": "dev-3110",
+      "device_instance": 3110,
+      "name": "AHU-1",
+      "vendor_id": 27,
+      "vendor_name": "Automated Logic",
+      "model_name": "SE6104a",
+      "firmware_revision": "6.02b",
+      "network_number": 2001,
+      "mac_address": "4",
+      "max_apdu_length_accepted": 480,
+      "segmentation_supported": "segmentedBoth",
+      "kind": "bacnetMstp",
+      "behind_supervisor": "dev-3101",
+      "trunk_id": "trunk-2a",
+      "tree_path": "#riverside/bldg_a/floor_2/ahu_1",
+      "equip_id": "ahu-1"
+    },
+    {
+      "device_id": "dev-3114",
+      "device_instance": 3114,
+      "name": "VAV 2-14",
+      "vendor_id": 27,
+      "vendor_name": "Automated Logic",
+      "model_name": "ZN341v",
+      "firmware_revision": "5.01a",
+      "network_number": 2001,
+      "mac_address": "10",
+      "max_apdu_length_accepted": 128,
+      "segmentation_supported": "noSegmentation",
+      "kind": "bacnetMstp",
+      "behind_supervisor": "dev-3101",
+      "trunk_id": "trunk-2a",
+      "tree_path": "#riverside/bldg_a/floor_2/vav_2_14",
+      "equip_id": "vav-2-14",
+      "note": "128-byte APDU - exercises aggressive RPM batch shrinking"
+    },
+    {
+      "device_id": "dev-3115",
+      "device_instance": 3115,
+      "name": "VAV 2-15",
+      "vendor_id": 27,
+      "vendor_name": "Automated Logic",
+      "model_name": "ZN341v",
+      "firmware_revision": "5.01a",
+      "network_number": 2001,
+      "mac_address": "11",
+      "max_apdu_length_accepted": 128,
+      "segmentation_supported": "noSegmentation",
+      "kind": "bacnetMstp",
+      "behind_supervisor": "dev-3101",
+      "trunk_id": "trunk-2a",
+      "tree_path": "#riverside/bldg_a/floor_2/vav_2_15",
+      "equip_id": "vav-2-15"
+    },
+    {
+      "device_id": "dev-3116",
+      "device_instance": 3116,
+      "name": "VAV 2-16",
+      "vendor_id": 27,
+      "vendor_name": "Automated Logic",
+      "model_name": "ZN341v",
+      "firmware_revision": "5.01a",
+      "network_number": 2001,
+      "mac_address": "12",
+      "max_apdu_length_accepted": 128,
+      "segmentation_supported": "noSegmentation",
+      "kind": "bacnetMstp",
+      "behind_supervisor": "dev-3101",
+      "trunk_id": "trunk-2a",
+      "tree_path": "#riverside/bldg_a/floor_2/vav_2_16",
+      "equip_id": "vav-2-16"
+    }
+  ],
+  "equips": [
+    {
+      "id": "ahu-1",
+      "name": "AHU-1",
+      "equip_type": "ahu",
+      "site_id": "site-hq",
+      "device_id": "dev-3110",
+      "floor_id": "floor-2",
+      "vendor": "carrier_alc",
+      "life_safety": false,
+      "nameplate": { "manufacturer": "Carrier", "model": "39M Airfoil", "design_airflow_cfm": 12000, "motor_hp": 15 }
+    },
+    { "id": "vav-2-14", "name": "VAV 2-14", "equip_type": "vav", "site_id": "site-hq", "device_id": "dev-3114", "parent_equip_id": "ahu-1", "floor_id": "floor-2", "space_ids": ["space-214"], "vendor": "carrier_alc", "nameplate": { "manufacturer": "Titus", "model": "DESV-3000", "design_airflow_cfm": 1200, "min_airflow_cfm": 300, "max_airflow_cfm": 1200 } },
+    { "id": "vav-2-15", "name": "VAV 2-15", "equip_type": "vav", "site_id": "site-hq", "device_id": "dev-3115", "parent_equip_id": "ahu-1", "floor_id": "floor-2", "space_ids": ["space-215"], "vendor": "carrier_alc", "nameplate": { "manufacturer": "Titus", "model": "DESV-2000", "design_airflow_cfm": 800, "min_airflow_cfm": 250, "max_airflow_cfm": 800 } },
+    { "id": "vav-2-16", "name": "VAV 2-16", "equip_type": "vav", "site_id": "site-hq", "device_id": "dev-3116", "parent_equip_id": "ahu-1", "floor_id": "floor-2", "space_ids": ["space-216"], "vendor": "carrier_alc", "nameplate": { "manufacturer": "Titus", "model": "DESV-3000", "design_airflow_cfm": 1400, "min_airflow_cfm": 350, "max_airflow_cfm": 1400 } }
+  ],
+  "objects": [
+    { "logical_id": "ahu-1.dischargeAirTemp", "device_id": "dev-3110", "object_type": "analog-value", "object_instance": 301, "object_name": "dischargeAirTemp", "display_name": "Discharge Air Temp", "tree_path": "#riverside/bldg_a/floor_2/ahu_1/dischargeAirTemp", "units_enum": 64, "units_text": "deg F", "present_value": 55.4, "resolution": 0.1, "is_commandable": false },
+    { "logical_id": "ahu-1.returnAirTemp", "device_id": "dev-3110", "object_type": "analog-value", "object_instance": 302, "object_name": "returnAirTemp", "display_name": "Return Air Temp", "tree_path": "#riverside/bldg_a/floor_2/ahu_1/returnAirTemp", "units_enum": 64, "units_text": "deg F", "present_value": 74.1, "resolution": 0.1, "is_commandable": false },
+    { "logical_id": "ahu-1.outsideAirTemp", "device_id": "dev-3110", "object_type": "analog-value", "object_instance": 303, "object_name": "outdoorAirTemp", "display_name": "Outdoor Air Temp", "tree_path": "#riverside/bldg_a/floor_2/ahu_1/outdoorAirTemp", "units_enum": 64, "units_text": "deg F", "present_value": 91.8, "resolution": 0.1, "is_commandable": false, "note": "ALC says 'outdoor', Haystack says 'outside' - synonym map target" },
+    { "logical_id": "ahu-1.mixedAirTemp", "device_id": "dev-3110", "object_type": "analog-value", "object_instance": 304, "object_name": "mixedAirTemp", "display_name": "Mixed Air Temp", "tree_path": "#riverside/bldg_a/floor_2/ahu_1/mixedAirTemp", "units_enum": 64, "units_text": "deg F", "present_value": 78.3, "resolution": 0.1, "is_commandable": false },
+    { "logical_id": "ahu-1.ductStaticPressure", "device_id": "dev-3110", "object_type": "analog-value", "object_instance": 305, "object_name": "ductStaticPressure", "display_name": "Duct Static Pressure", "tree_path": "#riverside/bldg_a/floor_2/ahu_1/ductStaticPressure", "units_enum": null, "units_text": null, "present_value": 1.42, "resolution": 0.01, "is_commandable": false, "note": "UNIT TRAP: ALC AV with no units - must be inferred from name + value range (inH2O)" },
+    { "logical_id": "ahu-1.ductStaticPressureSp", "device_id": "dev-3110", "object_type": "analog-value", "object_instance": 306, "object_name": "staticPressureSetpoint", "display_name": "Static Pressure Setpoint", "tree_path": "#riverside/bldg_a/floor_2/ahu_1/staticPressureSetpoint", "units_enum": null, "units_text": null, "present_value": 1.50, "resolution": 0.01, "is_commandable": true },
+    { "logical_id": "ahu-1.dischargeAirTempSp", "device_id": "dev-3110", "object_type": "analog-value", "object_instance": 307, "object_name": "dischargeAirSetpoint", "display_name": "Discharge Air Setpoint", "tree_path": "#riverside/bldg_a/floor_2/ahu_1/dischargeAirSetpoint", "units_enum": 64, "units_text": "deg F", "present_value": 55.0, "resolution": 0.1, "is_commandable": true },
+    { "logical_id": "ahu-1.supplyFanStatus", "device_id": "dev-3110", "object_type": "binary-value", "object_instance": 310, "object_name": "supplyFanStatus", "display_name": "Supply Fan Status", "tree_path": "#riverside/bldg_a/floor_2/ahu_1/supplyFanStatus", "present_value": 1, "state_text": ["Off", "On"], "is_commandable": false },
+    { "logical_id": "ahu-1.supplyFanCmd", "device_id": "dev-3110", "object_type": "binary-value", "object_instance": 311, "object_name": "supplyFanCommand", "display_name": "Supply Fan Command", "tree_path": "#riverside/bldg_a/floor_2/ahu_1/supplyFanCommand", "present_value": 1, "state_text": ["Stop", "Start"], "is_commandable": true, "relinquish_default": 0, "note": "TRAP: ALC exposes a commandable point as BV, not BO - object_type is a weak signal here" },
+    { "logical_id": "ahu-1.supplyFanSpeedCmd", "device_id": "dev-3110", "object_type": "analog-value", "object_instance": 312, "object_name": "supplyFanVFDSpeed", "display_name": "Supply Fan VFD Speed", "tree_path": "#riverside/bldg_a/floor_2/ahu_1/supplyFanVFDSpeed", "units_enum": 98, "units_text": "percent", "present_value": 72.5, "resolution": 0.5, "is_commandable": true, "relinquish_default": 0.0, "note": "acronym tokenizer trap: supplyFanVFDSpeed -> supply/fan/vfd/speed" },
+    { "logical_id": "ahu-1.outsideAirDamperCmd", "device_id": "dev-3110", "object_type": "analog-value", "object_instance": 313, "object_name": "outdoorAirDamperPosition", "display_name": "OA Damper Position", "tree_path": "#riverside/bldg_a/floor_2/ahu_1/outdoorAirDamperPosition", "units_enum": 98, "units_text": "percent", "present_value": 20.0, "resolution": 1.0, "is_commandable": true, "relinquish_default": 20.0 },
+    { "logical_id": "ahu-1.coolingValveCmd", "device_id": "dev-3110", "object_type": "analog-value", "object_instance": 314, "object_name": "coolingValveCommand", "display_name": "Cooling Valve Command", "tree_path": "#riverside/bldg_a/floor_2/ahu_1/coolingValveCommand", "units_enum": 98, "units_text": "percent", "present_value": 64.0, "resolution": 1.0, "is_commandable": true, "relinquish_default": 0.0, "priority_array": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null] },
+    { "logical_id": "ahu-1.occupancyCmd", "device_id": "dev-3110", "object_type": "multi-state-value", "object_instance": 320, "object_name": "occupancyRequest", "display_name": "Occupancy Request", "tree_path": "#riverside/bldg_a/floor_2/ahu_1/occupancyRequest", "present_value": 1, "state_text": ["Occupied", "Unoccupied", "Standby", "Bypass"], "is_commandable": true },
+    { "logical_id": "ahu-1.smokeDamperCmd", "device_id": "dev-3110", "object_type": "binary-value", "object_instance": 390, "object_name": "smokeDamperCommand", "display_name": "Smoke Damper Command", "tree_path": "#riverside/bldg_a/floor_2/ahu_1/smokeDamperCommand", "present_value": 1, "state_text": ["Closed", "Open"], "is_commandable": true, "life_safety": true, "note": "UUKL listed - must be blocked" },
+    { "logical_id": "ahu-1.smokeDetectorStatus", "device_id": "dev-3110", "object_type": "binary-value", "object_instance": 391, "object_name": "ductSmokeDetector", "display_name": "Duct Smoke Detector", "tree_path": "#riverside/bldg_a/floor_2/ahu_1/ductSmokeDetector", "present_value": 0, "state_text": ["Normal", "Alarm"], "is_commandable": false, "life_safety": true },
+
+    { "logical_id": "vav-2-14.zoneTemp", "device_id": "dev-3114", "object_type": "analog-value", "object_instance": 101, "object_name": "zoneTemp", "display_name": "Zone Temp", "tree_path": "#riverside/bldg_a/floor_2/vav_2_14/zoneTemp", "units_enum": 64, "units_text": "deg F", "present_value": 73.2, "resolution": 0.1, "is_commandable": false },
+    { "logical_id": "vav-2-14.zoneTempSp", "device_id": "dev-3114", "object_type": "analog-value", "object_instance": 102, "object_name": "coolingSetpoint", "display_name": "Cooling Setpoint", "tree_path": "#riverside/bldg_a/floor_2/vav_2_14/coolingSetpoint", "units_enum": 64, "units_text": "deg F", "present_value": 72.0, "resolution": 0.5, "is_commandable": true },
+    { "logical_id": "vav-2-14.dischargeAirTemp", "device_id": "dev-3114", "object_type": "analog-value", "object_instance": 103, "object_name": "dischargeAirTemp", "display_name": "Discharge Air Temp", "tree_path": "#riverside/bldg_a/floor_2/vav_2_14/dischargeAirTemp", "units_enum": 64, "units_text": "deg F", "present_value": 58.9, "resolution": 0.1, "is_commandable": false },
+    { "logical_id": "vav-2-14.airflow", "device_id": "dev-3114", "object_type": "analog-value", "object_instance": 104, "object_name": "supplyAirFlow", "display_name": "Supply Airflow", "tree_path": "#riverside/bldg_a/floor_2/vav_2_14/supplyAirFlow", "units_enum": 84, "units_text": "cfm", "present_value": 640.0, "resolution": 5.0, "is_commandable": false },
+    { "logical_id": "vav-2-14.airflowSp", "device_id": "dev-3114", "object_type": "analog-value", "object_instance": 105, "object_name": "airflowSetpoint", "display_name": "Airflow Setpoint", "tree_path": "#riverside/bldg_a/floor_2/vav_2_14/airflowSetpoint", "units_enum": 84, "units_text": "cfm", "present_value": 660.0, "resolution": 5.0, "is_commandable": true },
+    { "logical_id": "vav-2-14.damperCmd", "device_id": "dev-3114", "object_type": "analog-value", "object_instance": 110, "object_name": "damperPosition", "display_name": "Damper Position", "tree_path": "#riverside/bldg_a/floor_2/vav_2_14/damperPosition", "units_enum": 98, "units_text": "percent", "present_value": 48.0, "resolution": 1.0, "is_commandable": true, "relinquish_default": 0.0, "priority_array": [null, null, null, null, null, null, null, 55.0, null, null, null, null, null, null, null, null], "note": "same orphaned override at priority 8 as the Trane fixture" },
+    { "logical_id": "vav-2-14.reheatValveCmd", "device_id": "dev-3114", "object_type": "analog-value", "object_instance": 111, "object_name": "reheatValveCommand", "display_name": "Reheat Valve Command", "tree_path": "#riverside/bldg_a/floor_2/vav_2_14/reheatValveCommand", "units_enum": 98, "units_text": "percent", "present_value": 0.0, "resolution": 1.0, "is_commandable": true, "relinquish_default": 0.0 },
+    { "logical_id": "vav-2-14.occupancy", "device_id": "dev-3114", "object_type": "binary-value", "object_instance": 120, "object_name": "occupancyStatus", "display_name": "Occupancy Status", "tree_path": "#riverside/bldg_a/floor_2/vav_2_14/occupancyStatus", "present_value": 1, "state_text": ["Unoccupied", "Occupied"], "is_commandable": false },
+    { "logical_id": "vav-2-14.zoneCo2", "device_id": "dev-3114", "object_type": "analog-value", "object_instance": 130, "object_name": "zoneCO2", "display_name": "Zone CO2", "tree_path": "#riverside/bldg_a/floor_2/vav_2_14/zoneCO2", "units_enum": 96, "units_text": "ppm", "present_value": 612.0, "resolution": 1.0, "is_commandable": false, "note": "acronym tokenizer trap: zoneCO2 -> zone/co2, not zone/c/o/2" },
+
+    { "logical_id": "vav-2-15.zoneTemp", "device_id": "dev-3115", "object_type": "analog-value", "object_instance": 101, "object_name": "zoneTemp", "display_name": "Zone Temp", "tree_path": "#riverside/bldg_a/floor_2/vav_2_15/zoneTemp", "units_enum": 64, "units_text": "deg F", "present_value": 71.6, "resolution": 0.1, "is_commandable": false },
+    { "logical_id": "vav-2-15.zoneTempSp", "device_id": "dev-3115", "object_type": "analog-value", "object_instance": 102, "object_name": "coolingSetpoint", "display_name": "Cooling Setpoint", "tree_path": "#riverside/bldg_a/floor_2/vav_2_15/coolingSetpoint", "units_enum": 64, "units_text": "deg F", "present_value": 72.0, "resolution": 0.5, "is_commandable": true },
+    { "logical_id": "vav-2-15.dischargeAirTemp", "device_id": "dev-3115", "object_type": "analog-value", "object_instance": 103, "object_name": "dischargeAirTemp", "display_name": "Discharge Air Temp", "tree_path": "#riverside/bldg_a/floor_2/vav_2_15/dischargeAirTemp", "units_enum": 62, "units_text": "deg C", "present_value": 14.9, "resolution": 0.1, "is_commandable": false, "note": "same degC unit trap as the Trane fixture - identical VAV, different unit" },
+    { "logical_id": "vav-2-15.airflow", "device_id": "dev-3115", "object_type": "analog-value", "object_instance": 104, "object_name": "supplyAirFlow", "display_name": "Supply Airflow", "tree_path": "#riverside/bldg_a/floor_2/vav_2_15/supplyAirFlow", "units_enum": 84, "units_text": "cfm", "present_value": 415.0, "resolution": 5.0, "is_commandable": false },
+    { "logical_id": "vav-2-15.airflowSp", "device_id": "dev-3115", "object_type": "analog-value", "object_instance": 105, "object_name": "airflowSetpoint", "display_name": "Airflow Setpoint", "tree_path": "#riverside/bldg_a/floor_2/vav_2_15/airflowSetpoint", "units_enum": 84, "units_text": "cfm", "present_value": 420.0, "resolution": 5.0, "is_commandable": true },
+    { "logical_id": "vav-2-15.damperCmd", "device_id": "dev-3115", "object_type": "analog-value", "object_instance": 110, "object_name": "damperPosition", "display_name": "Damper Position", "tree_path": "#riverside/bldg_a/floor_2/vav_2_15/damperPosition", "units_enum": 98, "units_text": "percent", "present_value": 31.0, "resolution": 1.0, "is_commandable": true, "relinquish_default": 0.0 },
+    { "logical_id": "vav-2-15.reheatValveCmd", "device_id": "dev-3115", "object_type": "analog-value", "object_instance": 111, "object_name": "reheatValveCommand", "display_name": "Reheat Valve Command", "tree_path": "#riverside/bldg_a/floor_2/vav_2_15/reheatValveCommand", "units_enum": 98, "units_text": "percent", "present_value": 12.0, "resolution": 1.0, "is_commandable": true, "relinquish_default": 0.0 },
+    { "logical_id": "vav-2-15.occupancy", "device_id": "dev-3115", "object_type": "binary-value", "object_instance": 120, "object_name": "occupancyStatus", "display_name": "Occupancy Status", "tree_path": "#riverside/bldg_a/floor_2/vav_2_15/occupancyStatus", "present_value": 1, "state_text": ["Unoccupied", "Occupied"], "is_commandable": false },
+    { "logical_id": "vav-2-15.zoneCo2", "device_id": "dev-3115", "object_type": "analog-value", "object_instance": 130, "object_name": "zoneCO2", "display_name": "Zone CO2", "tree_path": "#riverside/bldg_a/floor_2/vav_2_15/zoneCO2", "units_enum": 96, "units_text": "ppm", "present_value": 1180.0, "resolution": 1.0, "is_commandable": false },
+
+    { "logical_id": "vav-2-16.zoneTemp", "device_id": "dev-3116", "object_type": "analog-value", "object_instance": 101, "object_name": "zoneTemp", "display_name": "Zone Temp", "tree_path": "#riverside/bldg_a/floor_2/vav_2_16/zoneTemp", "units_enum": 64, "units_text": "deg F", "present_value": 76.9, "resolution": 0.1, "is_commandable": false },
+    { "logical_id": "vav-2-16.zoneTempSp", "device_id": "dev-3116", "object_type": "analog-value", "object_instance": 102, "object_name": "coolingSetpoint", "display_name": "Cooling Setpoint", "tree_path": "#riverside/bldg_a/floor_2/vav_2_16/coolingSetpoint", "units_enum": 64, "units_text": "deg F", "present_value": 72.0, "resolution": 0.5, "is_commandable": true },
+    { "logical_id": "vav-2-16.dischargeAirTemp", "device_id": "dev-3116", "object_type": "analog-value", "object_instance": 103, "object_name": "dischargeAirTemp", "display_name": "Discharge Air Temp", "tree_path": "#riverside/bldg_a/floor_2/vav_2_16/dischargeAirTemp", "units_enum": 64, "units_text": "deg F", "present_value": 59.4, "resolution": 0.1, "is_commandable": false },
+    { "logical_id": "vav-2-16.airflow", "device_id": "dev-3116", "object_type": "analog-value", "object_instance": 104, "object_name": "supplyAirFlow", "display_name": "Supply Airflow", "tree_path": "#riverside/bldg_a/floor_2/vav_2_16/supplyAirFlow", "units_enum": 84, "units_text": "cfm", "present_value": 1390.0, "resolution": 5.0, "is_commandable": false },
+    { "logical_id": "vav-2-16.airflowSp", "device_id": "dev-3116", "object_type": "analog-value", "object_instance": 105, "object_name": "airflowSetpoint", "display_name": "Airflow Setpoint", "tree_path": "#riverside/bldg_a/floor_2/vav_2_16/airflowSetpoint", "units_enum": 84, "units_text": "cfm", "present_value": 1400.0, "resolution": 5.0, "is_commandable": true },
+    { "logical_id": "vav-2-16.damperCmd", "device_id": "dev-3116", "object_type": "analog-value", "object_instance": 110, "object_name": "damperPosition", "display_name": "Damper Position", "tree_path": "#riverside/bldg_a/floor_2/vav_2_16/damperPosition", "units_enum": 98, "units_text": "percent", "present_value": 100.0, "resolution": 1.0, "is_commandable": true, "relinquish_default": 0.0 },
+    { "logical_id": "vav-2-16.reheatValveCmd", "device_id": "dev-3116", "object_type": "analog-value", "object_instance": 111, "object_name": "reheatValveCommand", "display_name": "Reheat Valve Command", "tree_path": "#riverside/bldg_a/floor_2/vav_2_16/reheatValveCommand", "units_enum": 98, "units_text": "percent", "present_value": 0.0, "resolution": 1.0, "is_commandable": true, "relinquish_default": 0.0 },
+    { "logical_id": "vav-2-16.occupancy", "device_id": "dev-3116", "object_type": "binary-value", "object_instance": 120, "object_name": "occupancyStatus", "display_name": "Occupancy Status", "tree_path": "#riverside/bldg_a/floor_2/vav_2_16/occupancyStatus", "present_value": 1, "state_text": ["Unoccupied", "Occupied"], "is_commandable": false },
+    { "logical_id": "vav-2-16.unknownPoint", "device_id": "dev-3116", "object_type": "analog-value", "object_instance": 199, "object_name": "auxInput3", "display_name": "Aux Input 3", "tree_path": "#riverside/bldg_a/floor_2/vav_2_16/auxInput3", "units_enum": null, "units_text": null, "present_value": 68.4, "is_commandable": false, "note": "counterpart of the Trane UN-T ambiguity - ReviewQueue target in both fixtures" }
+  ],
+  "topology": {
+    "connection_points": [
+      { "id": "cp-ahu1-oa-in", "equip_id": "ahu-1", "substance": "outsideAir", "direction": "inlet", "medium_role": "outsideAirIntake" },
+      { "id": "cp-ahu1-ra-in", "equip_id": "ahu-1", "substance": "returnAir", "direction": "inlet", "medium_role": "returnAirInlet" },
+      { "id": "cp-ahu1-sa-out", "equip_id": "ahu-1", "substance": "supplyAir", "direction": "outlet", "medium_role": "supplyAirDischarge" },
+      { "id": "cp-vav214-in", "equip_id": "vav-2-14", "substance": "supplyAir", "direction": "inlet", "medium_role": "primaryAirInlet" },
+      { "id": "cp-vav214-out", "equip_id": "vav-2-14", "substance": "dischargeAir", "direction": "outlet", "medium_role": "dischargeAirOutlet" },
+      { "id": "cp-vav215-in", "equip_id": "vav-2-15", "substance": "supplyAir", "direction": "inlet", "medium_role": "primaryAirInlet" },
+      { "id": "cp-vav215-out", "equip_id": "vav-2-15", "substance": "dischargeAir", "direction": "outlet", "medium_role": "dischargeAirOutlet" },
+      { "id": "cp-vav216-in", "equip_id": "vav-2-16", "substance": "supplyAir", "direction": "inlet", "medium_role": "primaryAirInlet" },
+      { "id": "cp-vav216-out", "equip_id": "vav-2-16", "substance": "dischargeAir", "direction": "outlet", "medium_role": "dischargeAirOutlet" }
+    ],
+    "junctions": [
+      { "id": "jct-sa-trunk-2", "kind": "splitter", "substance": "supplyAir", "inlet_connection_ids": ["conn-ahu1-sa"], "outlet_connection_ids": ["conn-sa-vav214", "conn-sa-vav215", "conn-sa-vav216"] }
+    ],
+    "connections": [
+      { "id": "conn-ahu1-sa", "substance": "supplyAir", "medium": "duct", "source_point_ids": ["cp-ahu1-sa-out"], "target_point_ids": [], "junction_ids": ["jct-sa-trunk-2"], "design_flow": 12000 },
+      { "id": "conn-sa-vav214", "substance": "supplyAir", "medium": "duct", "source_point_ids": [], "target_point_ids": ["cp-vav214-in"], "junction_ids": ["jct-sa-trunk-2"], "design_flow": 1200 },
+      { "id": "conn-sa-vav215", "substance": "supplyAir", "medium": "duct", "source_point_ids": [], "target_point_ids": ["cp-vav215-in"], "junction_ids": ["jct-sa-trunk-2"], "design_flow": 800 },
+      { "id": "conn-sa-vav216", "substance": "supplyAir", "medium": "duct", "source_point_ids": [], "target_point_ids": ["cp-vav216-in"], "junction_ids": ["jct-sa-trunk-2"], "design_flow": 1400 }
+    ],
+    "relations": [
+      { "kind": "feeds", "source_id": "ahu-1", "target_id": "vav-2-14", "substance": "supplyAir" },
+      { "kind": "feeds", "source_id": "ahu-1", "target_id": "vav-2-15", "substance": "supplyAir" },
+      { "kind": "feeds", "source_id": "ahu-1", "target_id": "vav-2-16", "substance": "supplyAir" },
+      { "kind": "servesSpace", "source_id": "vav-2-14", "target_id": "space-214" },
+      { "kind": "servesSpace", "source_id": "vav-2-15", "target_id": "space-215" },
+      { "kind": "servesSpace", "source_id": "vav-2-16", "target_id": "space-216" }
+    ]
+  },
+  "life_safety": {
+    "source_document": "M-601 Smoke Control Sequence Matrix, Rev 3, 2011-04-18",
+    "blocked_logical_ids": ["ahu-1.smokeDamperCmd", "ahu-1.smokeDetectorStatus"],
+    "blocked_device_ids": []
+  },
+  "history": {
+    "sample_interval_s": 300,
+    "span_hours": 24,
+    "gaps": [
+      { "logical_id": "vav-2-14.zoneTemp", "start_offset_hours": 6.0, "duration_hours": 2.0, "reason": "commsLoss" },
+      { "logical_id": "vav-2-16.airflow", "start_offset_hours": 14.5, "duration_hours": 0.75, "reason": "trunkSaturated" }
+    ]
+  }
+}
